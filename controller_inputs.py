@@ -1,13 +1,22 @@
 from inputs import get_gamepad
 from inputs import devices
 
-
 for device in devices:
     print(device)
 
-
 #ABS_Y, ABX_RY, ABS_Z, ABS_RZ, BTN_START
 inputs_list = {"ABS_Y" : 0, "ABS_RY" : 0, "ABS_Z" : 0, "ABS_RZ" : 0, "BTN_START" : 0}
+
+'''
+while True:
+    events = get_gamepad()  # Get events from the gamepad
+    for event in events:
+        #if event.code == "ABS_X":
+        #    print((64+round(event.state/500)) * "-")
+        #if event.code == "ABS_RZ":
+        #    print((round(event.state/2)) * "-")
+        print(event.code, event.state)
+        '''
 
 def return_controller_inputs():
     """
@@ -18,9 +27,10 @@ def return_controller_inputs():
     events = get_gamepad()
     # Update the inputs_list with the event states
     for event in events:
+        
         if event.code in inputs_list:  # Only update if the event code exists in the inputs list
             inputs_list[event.code] = event.state
 
     print(inputs_list)
     return inputs_list
-#return_controller_inputs()
+return_controller_inputs()
