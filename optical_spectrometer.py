@@ -1,3 +1,22 @@
+'''
+import board
+import busio
+
+i2c = busio.I2C(board.SCL, board.SDA)
+
+while not i2c.try_lock():
+    pass
+
+try:
+    devices = i2c.scan()
+    if devices:
+        print("I2C devices found:", [hex(device) for device in devices])
+    else:
+        print("No I2C devices found")
+finally:
+    i2c.unlock()'
+    '''
+
 from time import sleep
 import board
 from adafruit_as7341 import AS7341
@@ -23,5 +42,5 @@ while True:
     print("F8 - 680nm/Red     %s" % bar_graph(sensor.channel_680nm))
     print("Clear              %s" % bar_graph(sensor.channel_clear))
     print("Near-IR (NIR)      %s" % bar_graph(sensor.channel_nir))
-    print("\n------------------------------------------------")
-    sleep(1)
+    #print("\n------------------------------------------------")
+    #sleep(1)
